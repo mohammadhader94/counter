@@ -40,6 +40,7 @@ class Counters extends Component {
             key={counter.id}
             counter={counter}
             onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
           />
         ))}
       </div>
@@ -56,6 +57,13 @@ class Counters extends Component {
       counter.value = 0;
       return counter;
     });
+    this.setState({ counters });
+  };
+  handleIncrement = counter => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value++;
     this.setState({ counters });
   };
 }
